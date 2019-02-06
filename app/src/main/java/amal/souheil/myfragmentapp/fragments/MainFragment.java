@@ -21,7 +21,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    //2 - Declare callback comme variable au sein du fragment
+//2 - Declare callback comme variable au sein du fragment
     private OnButtonClickedListener mCallback;
 
 

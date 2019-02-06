@@ -1,5 +1,6 @@
 package amal.souheil.myfragmentapp.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,5 +20,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     @Override
     public void onButtonClicked(View view) {
         Log.e(getClass().getSimpleName(),"Button clicked !");
+        startActivity(new Intent(this, DetailActivity.class));
     }
 }
