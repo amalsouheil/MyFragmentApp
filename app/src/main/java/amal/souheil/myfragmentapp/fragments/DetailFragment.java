@@ -23,8 +23,7 @@ public class DetailFragment extends Fragment {
 
 
     // 1 - Adding @State annotation to indicate to Icepick to save it
-    @State
-    int buttonTag;
+    @State int buttonTag;
     @State String nameToSaveInBundle;
     @State String titleToSaveInBundle;
 
@@ -53,8 +52,9 @@ public class DetailFragment extends Fragment {
 
         // 2 - Get textView from layout (don't forget to create ID in fragment_detail.xml)
 
-        this.textView = (TextView) view.findViewById(R.id.fragment_detail_text_view);
-        TextView textView2=(TextView)view.findViewWithTag("amal");
+        // 2 - Telling ButterKnife to bind all views in layout
+        ButterKnife.bind(this, view);
+        //TextView textView2=(TextView)view.findViewWithTag("amal");
 
         return(view);
     }
