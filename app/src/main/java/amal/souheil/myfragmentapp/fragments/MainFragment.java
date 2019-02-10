@@ -67,10 +67,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     // ACTIONS
     // --------------
 
+
+    //pour récupérer les clicks de l'utulisateur
     @Override
     public void onClick(View v) {
 
         // 5 - Spread the click to the parent activity
+        //Propagation du clic : Nous allons ici propager le clic de notre utilisateur
+        // directement à notre activité parente via la méthode onButtonClicked(View).
         mCallback.onButtonClicked(v);
 
     }

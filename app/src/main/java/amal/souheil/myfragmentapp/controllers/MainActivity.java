@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
 
     @Override
     public void onButtonClicked(View view) {
+
+
+        //c'est un message d'ereur dans le but de tester le bon fonctionnement entre le fragment et son activité conteneur
+        Log.e(getClass().getSimpleName(),"Button clicked !");
         // 1 - Retrieve button tag
         int buttonTag = Integer.parseInt(view.getTag().toString());
 

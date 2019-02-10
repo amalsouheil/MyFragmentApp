@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import amal.souheil.myfragmentapp.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import icepick.Icepick;
+import icepick.State;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,10 +22,19 @@ import amal.souheil.myfragmentapp.R;
 public class DetailFragment extends Fragment {
 
 
-    // 1 - Declare TextView
-    private TextView textView;
+    // 1 - Adding @State annotation to indicate to Icepick to save it
+    @State
+    int buttonTag;
+    @State String nameToSaveInBundle;
+    @State String titleToSaveInBundle;
 
-    private int buttonTag;
+    // 1 - Adding @BindView in order to indicate to ButterKnife to get & serialise it
+    @BindView(R.id.fragment_detail_text_view) TextView textView;
+
+    // 1 - Declare TextView
+    //private TextView textView;
+
+    //private int buttonTag;
     public static final String KEY_BUTTONTAG = "souheil.amal.myfragmentapp.controllers.fragments.DetailFragment.KEY_BUTTONTAG";
 
 
@@ -31,6 +44,7 @@ public class DetailFragment extends Fragment {
     }
 
 
+    // nous permet de déclarer notre layout (fragment_detail.xml).
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,33 +54,29 @@ public class DetailFragment extends Fragment {
         // 2 - Get textView from layout (don't forget to create ID in fragment_detail.xml)
 
         this.textView = (TextView) view.findViewById(R.id.fragment_detail_text_view);
-        return(view);
+        TextView textView2=(TextView)view.findViewWithTag("amal");
 
+        return(view);
     }
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // 5 - Restore last buttonTag if possible
-        if (savedInstanceState != null) {
-            int buttonTagRestored = savedInstanceState.getInt(KEY_BUTTONTAG, 0);
-            // 6 - Update TextView
-            this.updateTextView(buttonTagRestored);
-        }
+        // 2 - Restore all @State annotation variables in Bundle
+        Icepick.restoreInstanceState(this, savedInstanceState);
+        this.updateTextView(this.buttonTag);
     }
+
+
 
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // 4 - Save buttonTag in Bundle when fragment is destroyed
-        outState.putInt(KEY_BUTTONTAG, buttonTag);
+        // 3 - Save all @State annotation variables in Bundle
+        Icepick.saveInstanceState(this, outState);
     }
-
-
-
-
 
 
     // 3 - Update TextView depending on TAG's button
