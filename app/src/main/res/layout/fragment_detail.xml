@@ -2,10 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="amal.souheil.myfragmentapp.fragments.DetailFragment"
-    android:gravity="center"
+    tools:context=".controllers.fragments.DetailFragment"
+    android:orientation="vertical"
     android:background="#FF7F50">
 
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        >
     <TextView
         android:id="@+id/fragment_detail_text_view"
         android:layout_width="wrap_content"
@@ -15,4 +19,6 @@
         android:textSize="20sp"
         android:tag="amal"/>
 
+
+</LinearLayout>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package amal.souheil.myfragmentapp.fragments;
+package amal.souheil.myfragmentapp.controllers.fragments;
 
 
 import android.content.Context;
@@ -7,26 +7,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import amal.souheil.myfragmentapp.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class MainFragment extends BaseFragment implements View.OnClickListener {
 
-//ce constructeur vide implémenté par defaut est obligatire pour un fragment
+    @BindView(R.id.fragment_main_button_happy) Button happyButton;
+    @BindView(R.id.fragment_main_button_sad) Button sadButton;
+    @BindView(R.id.fragment_main_button_horrible) Button horribleButton;
+    private OnButtonClickedListener mCallback;
+
+
     public MainFragment() {
         // Required empty public constructor
     }
 
 
-//2 - Declare callback comme variable au sein du fragment
-    private OnButtonClickedListener mCallback;
-
-
     // 1 - Declare our interface that will be implemented by any container activity
-
     //Nous créons ici une interface dans le but d'obliger toute activité souhaitant
     //communiquer avec ce fragment à implémenter la méthode onButtonClicked(View).
 
@@ -36,20 +39,35 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
+    protected BaseFragment newInstance() {
+        return null;
+    }
+
+    @Override
+    protected int getFragmentLayout() {
+        return 0;
+    }
+
+    @Override
+    protected void configureDesign() {
+
+    }
+
+    @Override
+    protected void updateDesign() {
+
+    }
 
     //permet de récupérer le layout fragment_main.xml  afin de le définir comme layout principal
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-
-        //Inflate the layout of MainFragment
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View result=inflater.inflate(R.layout.fragment_main, container, false);
-
-        // Set onClickListener to buttons
-        result.findViewById(R.id.fragment_main_button_happy).setOnClickListener(this);
-        result.findViewById(R.id.fragment_main_button_sad).setOnClickListener(this);
-        result.findViewById(R.id.fragment_main_button_horrible).setOnClickListener(this);
-
+        ButterKnife.bind(this, result);
+        happyButton.setOnClickListener(this);
+        sadButton.setOnClickListener(this);
+        horribleButton.setOnClickListener(this);
         return result;
-
     }
 
 
@@ -62,12 +80,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-    // --------------
-    // ACTIONS
-    // --------------
-
-
     //pour récupérer les clicks de l'utulisateur
     @Override
     public void onClick(View v) {
@@ -77,11 +89,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // directement à notre activité parente via la méthode onButtonClicked(View).
         mCallback.onButtonClicked(v);
 
+
     }
 
-    // --------------
-    // FRAGMENT SUPPORT
-    // --------------
 
     // 3 - Create callback to parent activity
     private void createCallbackToParentActivity(){
@@ -92,6 +102,5 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");
         }
     }
-
 
 }

@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ParamsFragment">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FF7F50"
+    tools:context=".controllers.fragments.ParamsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:tag="amal"/>
+        android:gravity="center">
+    <TextView
+        android:id="@+id/fragment_params_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="afficher les paramétres de l'application"
+        android:layout_gravity="center"
+        android:textColor="#FFF"
+        android:gravity="center"
+      />
+    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
